@@ -475,8 +475,9 @@ textarea#editTa{
   .p-total{text-align:right;}
   .p-total b{font-family:'Anton',sans-serif;font-size:30px;display:block;line-height:1;}
   .p-total span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#444;}
-  .p-cols{column-count:3;column-gap:20px;column-rule:1px solid #cfcfcf;}
+  .p-cols{display:grid;grid-template-columns:repeat(3,1fr);column-gap:18px;}
   .p-team{break-inside:avoid;margin:0 0 9px;}
+  .p-team:nth-child(3n+2),.p-team:nth-child(3n+3){border-left:1px solid #cfcfcf;padding-left:13px;}
   .p-th{display:flex;align-items:center;gap:6px;margin-bottom:1px;}
   .p-flag{flex:0 0 auto;font-size:1.3em;}
   .p-flagimg{flex:0 0 auto;height:1.25em;width:1.8em;object-fit:cover;border:1px solid #bbb;border-radius:2px;}
@@ -1045,8 +1046,9 @@ function autoFit(){
     #print.measuring .p-meta{font-size:12px;margin-top:3px;}
     #print.measuring .p-total b{font-family:'Anton',sans-serif;font-size:32px;display:block;line-height:1;}
     #print.measuring .p-total span{font-size:10px;}
-    #print.measuring .p-cols{column-count:3;column-gap:20px;}
+    #print.measuring .p-cols{display:grid;grid-template-columns:repeat(3,1fr);column-gap:18px;}
     #print.measuring .p-team{break-inside:avoid;margin:0 0 9px;}
+    #print.measuring .p-team:nth-child(3n+2),#print.measuring .p-team:nth-child(3n+3){border-left:1px solid #cfcfcf;padding-left:13px;}
     #print.measuring .p-th{display:flex;align-items:center;gap:6px;margin-bottom:1px;}
     #print.measuring .p-flag{font-size:1.3em;}
     #print.measuring .p-flagimg{flex:0 0 auto;height:1.25em;width:1.8em;}
