@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<title>Álbum do Nickolas</title>
+<meta name="theme-color" content="#15179e" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Álbum do Nickolas" />
+<link rel="apple-touch-icon" href="assets/logo26-white.png" />
+<link rel="icon" type="image/png" href="assets/logo26-white.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Saira:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --blue:#2226d6;
+  --blue-ink:#15179e;
+  --blue-deep:#0c0e63;
+  --gold-1:#fff3c2;
+  --gold-2:#f7cf5a;
+  --gold-3:#d49a1c;
+  --gold-deep:#a86f0a;
+  --green:#18c172;
+  --green-deep:#0f9d5b;
+  --red:#ec3b3b;
+  --white:#ffffff;
+  --maxw:520px;
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:'Saira',system-ui,-apple-system,sans-serif;
+  color:#fff;
+  background:var(--blue-deep);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+/* fixed wave backdrop */
+#bg{
+  position:fixed;inset:0;z-index:-2;
+  background:url('assets/wave-blue.jpg') center top/cover no-repeat;
+  background-color:var(--blue-ink);
+}
+#bg::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(120% 60% at 50% 0%, rgba(10,12,90,0) 0%, rgba(9,11,70,.35) 55%, rgba(8,10,60,.85) 100%),
+    linear-gradient(180deg, rgba(12,14,99,.15) 0%, rgba(10,12,80,.55) 38%, rgba(9,11,70,.9) 100%);
+}
+.app{max-width:var(--maxw);margin:0 auto;position:relative;min-height:100vh;}
+
+h1,h2,h3,.fred{font-family:'Anton',system-ui,sans-serif;}
+.label{font-weight:700;letter-spacing:.18em;text-transform:uppercase;}
+
+/* ============ CAPA / HEADER ============ */
+header.capa{
+  position:relative;
+  padding:calc(env(safe-area-inset-top,0px) + 22px) 20px 20px;
+  text-align:center;
+  overflow:hidden;
+}
+.gear{
+  position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);right:14px;
+  width:44px;height:44px;border:none;border-radius:50%;
+  background:rgba(255,255,255,.12);color:#fff;
+  display:grid;place-items:center;cursor:pointer;
+  backdrop-filter:blur(6px);transition:background .2s, transform .1s;
+}
+.gear:active{transform:scale(.92);}
+.gear svg{width:21px;height:21px;}
+.crest-logo{
+  width:148px;height:auto;margin:6px auto 2px;display:block;
+  filter:drop-shadow(0 10px 22px rgba(0,0,0,.45));
+}
+.cap-kicker{
+  font-size:12px;letter-spacing:.28em;font-weight:700;text-transform:uppercase;
+  color:var(--gold-2);margin:10px 0 2px;
+}
+.cap-name{
+  font-family:'Anton',sans-serif;font-weight:400;
+  font-size:clamp(50px,16vw,74px);line-height:.9;
+  margin:0;letter-spacing:.005em;transform:skewX(-6deg);
+  color:#fff;
+  text-shadow:0 4px 0 rgba(0,0,0,.18), 0 14px 30px rgba(0,0,0,.4);
+}
+.cap-sub{
+  font-size:12.5px;letter-spacing:.22em;font-weight:700;text-transform:uppercase;
+  color:rgba(255,255,255,.7);margin-top:8px;
+}
+/* progress */
+.progress-wrap{margin:18px auto 4px;max-width:430px;}
+.progress-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:9px;}
+.prog-have{font-family:'Anton',sans-serif;font-weight:700;font-size:15px;color:#fff;}
+.prog-have b{color:var(--gold-2);font-size:19px;}
+.prog-miss{font-size:13px;font-weight:700;color:rgba(255,255,255,.78);}
+.prog-miss b{color:#fff;}
+.bar{
+  height:16px;border-radius:999px;
+  background:rgba(0,0,0,.32);
+  box-shadow:inset 0 2px 5px rgba(0,0,0,.5);
+  overflow:hidden;position:relative;
+  border:1.5px solid rgba(255,255,255,.14);
+}
+.bar-fill{
+  height:100%;width:0%;border-radius:999px;
+  background:linear-gradient(180deg,var(--gold-1),var(--gold-2) 45%,var(--gold-3));
+  box-shadow:0 0 14px rgba(247,207,90,.6), inset 0 1px 0 rgba(255,255,255,.7);
+  transition:width .6s cubic-bezier(.22,1,.36,1);
+  position:relative;
+}
+.bar-fill::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);
+  background-size:220% 100%;animation:shine 2.6s linear infinite;
+}
+@keyframes shine{to{background-position:-220% 0;}}
+.prog-pct{
+  text-align:center;margin-top:8px;font-size:11px;letter-spacing:.2em;
+  font-weight:700;text-transform:uppercase;color:var(--gold-2);
+}
+
+/* ============ FILTROS ============ */
+.filters-sticky{
+  position:sticky;top:0;z-index:30;
+  padding:11px 14px 11px;
+  background:linear-gradient(180deg, rgba(11,13,80,.92) 0%, rgba(11,13,80,.78) 70%, rgba(11,13,80,0) 100%);
+  backdrop-filter:blur(10px);
+}
+/* busca */
+.searchbar{
+  display:flex;align-items:center;gap:9px;margin-bottom:10px;
+  background:rgba(255,255,255,.13);border:1.5px solid rgba(255,255,255,.18);
+  border-radius:14px;padding:0 12px;min-height:48px;transition:background .2s,border-color .2s;
+}
+.searchbar.filled{background:#fff;border-color:#fff;}
+.searchbar svg{width:19px;height:19px;flex:0 0 auto;stroke:rgba(255,255,255,.8);}
+.searchbar.filled svg{stroke:var(--blue-ink);}
+.searchbar input{
+  flex:1;min-width:0;border:none;background:transparent;outline:none;
+  font-family:'Saira',sans-serif;font-weight:600;font-size:16px;color:#fff;
+}
+.searchbar input::placeholder{color:rgba(255,255,255,.62);font-weight:600;}
+.searchbar.filled input{color:var(--blue-ink);}
+.searchbar.filled input::placeholder{color:#9aa;}
+.search-clear{
+  display:none;border:none;cursor:pointer;background:rgba(0,0,0,.12);color:var(--blue-ink);
+  width:30px;height:30px;border-radius:50%;font-size:18px;line-height:1;flex:0 0 auto;
+  align-items:center;justify-content:center;
+}
+.searchbar.filled .search-clear{display:flex;}
+.search-empty{text-align:center;padding:46px 24px;color:rgba(255,255,255,.72);}
+.search-empty .big{font-size:42px;margin-bottom:10px;}
+.search-empty b{color:#fff;}
+.chips{display:flex;gap:9px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
+.chips::-webkit-scrollbar{display:none;}
+.chip{
+  flex:0 0 auto;border:none;cursor:pointer;
+  font-family:'Anton',sans-serif;font-weight:600;font-size:16px;
+  padding:11px 18px;border-radius:999px;min-height:48px;
+  background:rgba(255,255,255,.13);color:#fff;
+  border:1.5px solid rgba(255,255,255,.16);
+  display:flex;align-items:center;gap:8px;
+  transition:transform .12s, background .2s, color .2s;
+}
+.chip .ct{
+  font-size:12.5px;font-weight:800;font-family:'Saira';
+  background:rgba(0,0,0,.22);padding:2px 8px;border-radius:999px;min-width:26px;text-align:center;
+}
+.chip:active{transform:scale(.95);}
+.chip.on{background:#fff;color:var(--blue-ink);border-color:#fff;box-shadow:0 6px 16px rgba(0,0,0,.3);}
+.chip.on .ct{background:var(--blue-ink);color:#fff;}
+.chip.on.f-falta{background:var(--gold-2);color:#3a2700;border-color:var(--gold-1);}
+.chip.on.f-falta .ct{background:#3a2700;color:var(--gold-1);}
+.chip.on.f-rep{background:var(--red);color:#fff;border-color:#ff8585;}
+.chip.on.f-rep .ct{background:rgba(0,0,0,.25);color:#fff;}
+.chip.on.f-tenho{background:var(--green);color:#053d22;border-color:#7df0b6;}
+.chip.on.f-tenho .ct{background:#053d22;color:#bff5d9;}
+
+/* ============ ÁLBUM ============ */
+main{padding:6px 0 150px;}
+.team{margin:0 0 8px;padding:6px 4px 16px;}
+.team.hide{display:none;}
+.team-head{
+  display:flex;align-items:center;gap:11px;
+  padding:12px 16px 11px;margin:0 10px;
+  position:relative;
+}
+.flag{
+  font-size:30px;line-height:1;width:42px;height:42px;
+  display:grid;place-items:center;border-radius:11px;
+  background:rgba(255,255,255,.1);
+  box-shadow:0 3px 8px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.18);
+  flex:0 0 auto;
+}
+/* etiqueta estilo Panini: tab preto (sigla vertical) + bandeira retangular */
+.psticker{
+  display:flex;align-items:stretch;height:46px;flex:0 0 auto;
+  border-radius:5px 16px 16px 5px;overflow:hidden;
+  box-shadow:0 4px 10px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.25);
+}
+.psticker .ptab{
+  background:#0b0b0d;color:#fff;width:24px;
+  font-family:'Anton',sans-serif;font-size:13px;letter-spacing:.04em;
+  display:flex;align-items:center;justify-content:center;
+  writing-mode:vertical-rl;transform:rotate(180deg);
+}
+.psticker .pimg{width:58px;height:100%;object-fit:cover;display:block;background:#fff;}
+.psticker .pimg-special{display:flex;align-items:center;justify-content:center;font-size:26px;background:linear-gradient(135deg,#1a1ec9,#13158f);}
+/* escudo da seleção (figurinha 1) com a bandeira real */
+.cell.escudo .crest img{width:70%;height:auto;border-radius:3px;box-shadow:0 2px 5px rgba(0,0,0,.35);display:block;margin:0 auto;}
+.cell.escudo.s0 .crest img{opacity:.45;filter:grayscale(.5);}
+.team-name{font-family:'Anton',sans-serif;font-weight:400;font-size:21px;flex:1;letter-spacing:.01em;text-transform:uppercase;line-height:1.05;}
+.team-code{font-family:'Saira',sans-serif;font-weight:800;font-size:11px;letter-spacing:.13em;color:var(--gold-2);background:rgba(0,0,0,.3);border:1px solid rgba(247,207,90,.32);padding:5px 8px;border-radius:7px;white-space:nowrap;flex:0 0 auto;}
+.team-count{
+  font-family:'Anton',sans-serif;font-weight:600;font-size:14px;
+  padding:5px 12px;border-radius:999px;white-space:nowrap;
+  background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.14);
+}
+.team-count.done{background:var(--green);color:#053d22;border-color:#7df0b6;}
+.team-bar{height:5px;border-radius:999px;background:rgba(0,0,0,.28);margin:2px 16px 12px;overflow:hidden;}
+.team-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold-2),var(--gold-1));border-radius:999px;transition:width .4s ease;}
+
+.grid{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:9px;
+  padding:0 14px;
+}
+.cell{
+  position:relative;aspect-ratio:0.84;border-radius:14px;cursor:pointer;
+  display:grid;place-items:center;
+  font-family:'Anton',sans-serif;
+  border:2px solid transparent;
+  transition:transform .14s cubic-bezier(.34,1.6,.5,1), box-shadow .2s;
+  -webkit-user-select:none;user-select:none;
+  min-height:58px;
+}
+.cell.hide{display:none;}
+.cell .num{font-weight:400;font-size:clamp(20px,5.8vw,27px);line-height:1;letter-spacing:.02em;}
+/* FALTA */
+.cell.s0{background:rgba(255,255,255,.055);border:2px dashed rgba(255,255,255,.34);color:rgba(255,255,255,.5);}
+.cell.s0 .num{font-weight:500;}
+/* TENHO */
+.cell.s1{
+  background:linear-gradient(180deg,#ffffff,#eef1ff);
+  color:var(--blue-ink);
+  box-shadow:0 7px 15px rgba(0,0,0,.28), inset 0 1px 0 #fff;
+  border-color:#fff;
+}
+/* REPETIDA */
+.cell.s2{
+  background:linear-gradient(165deg,var(--gold-1),var(--gold-2) 55%,var(--gold-3));
+  color:#5a3b00;
+  box-shadow:0 8px 18px rgba(123,80,0,.4), inset 0 1px 0 rgba(255,255,255,.65);
+  border-color:var(--gold-1);
+}
+.cell:active{transform:scale(.9);}
+.cell.pop{animation:pop .34s cubic-bezier(.34,1.6,.5,1);}
+@keyframes pop{0%{transform:scale(.86);}55%{transform:scale(1.1);}100%{transform:scale(1);}}
+
+/* check badge */
+.cell .check{
+  position:absolute;top:-7px;right:-7px;width:24px;height:24px;border-radius:50%;
+  background:linear-gradient(180deg,var(--green),var(--green-deep));
+  display:none;place-items:center;
+  box-shadow:0 3px 7px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.4);
+  border:2px solid #fff;
+}
+.cell .check svg{width:12px;height:12px;stroke:#fff;}
+.cell.s1 .check{display:grid;animation:badge .3s cubic-bezier(.34,1.7,.5,1);}
+/* dupe badge */
+.cell .dupe{
+  position:absolute;top:-8px;right:-8px;min-width:28px;height:24px;padding:0 6px;
+  border-radius:999px;background:linear-gradient(180deg,#ff5a5a,var(--red));
+  color:#fff;font-family:'Saira';font-weight:800;font-size:13px;
+  display:none;align-items:center;justify-content:center;
+  box-shadow:0 3px 7px rgba(0,0,0,.4);border:2px solid #fff;
+}
+.cell.s2 .dupe{display:flex;animation:badge .3s cubic-bezier(.34,1.7,.5,1);}
+@keyframes badge{0%{transform:scale(0);}70%{transform:scale(1.25);}100%{transform:scale(1);}}
+
+/* ESCUDO foil */
+.cell.escudo{overflow:hidden;}
+.cell.escudo .num{display:none;}
+.cell.escudo .crest{font-size:clamp(26px,7.6vw,34px);line-height:1;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3));}
+.cell.escudo .etag{
+  position:absolute;bottom:4px;left:0;right:0;text-align:center;
+  font-family:'Saira';font-weight:800;font-size:7.5px;letter-spacing:.12em;
+}
+.cell.escudo.s0{
+  background:linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+  border:2px dashed rgba(255,235,160,.55);
+}
+.cell.escudo.s0 .crest{opacity:.4;filter:grayscale(.4);}
+.cell.escudo.s0 .etag{color:rgba(255,235,160,.55);}
+.cell.escudo.s1, .cell.escudo.s2{
+  background:
+    linear-gradient(125deg,
+      rgba(255,90,160,.55), rgba(255,200,80,.55) 22%, rgba(120,230,170,.55) 42%,
+      rgba(90,170,255,.55) 62%, rgba(190,120,230,.55) 82%, rgba(255,90,160,.55));
+  background-size:260% 260%;
+  border-color:rgba(255,255,255,.85);
+  box-shadow:0 9px 20px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.8);
+  animation:foil 5.5s linear infinite;
+}
+.cell.escudo.s1::before, .cell.escudo.s2::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(115deg,transparent 38%,rgba(255,255,255,.75) 50%,transparent 62%);
+  background-size:250% 100%;animation:foilshine 3.2s linear infinite;pointer-events:none;
+}
+.cell.escudo .etag{color:#2a1c00;text-shadow:0 1px 1px rgba(255,255,255,.5);}
+@keyframes foil{to{background-position:260% 0;}}
+@keyframes foilshine{to{background-position:-250% 0;}}
+
+/* ============ BOTTOM BAR ============ */
+.bottom{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;
+  max-width:var(--maxw);margin:0 auto;
+  padding:12px 14px calc(12px + var(--safe-b));
+  display:flex;gap:11px;
+  background:linear-gradient(180deg, rgba(9,11,70,0) 0%, rgba(9,11,70,.82) 30%, rgba(8,10,62,.96) 100%);
+}
+.bbtn{
+  flex:1;border:none;cursor:pointer;min-height:58px;
+  font-family:'Anton',sans-serif;font-weight:600;font-size:18px;
+  border-radius:18px;display:flex;align-items:center;justify-content:center;gap:9px;
+  transition:transform .1s, filter .2s;
+}
+.bbtn svg{width:22px;height:22px;}
+.bbtn:active{transform:translateY(2px) scale(.99);}
+.bbtn.trade{
+  background:linear-gradient(180deg,var(--gold-1),var(--gold-2) 50%,var(--gold-3));
+  color:#3a2700;box-shadow:0 8px 20px rgba(180,120,0,.45), inset 0 1px 0 rgba(255,255,255,.7);
+}
+.bbtn.print{
+  background:rgba(255,255,255,.14);color:#fff;border:1.5px solid rgba(255,255,255,.22);
+  backdrop-filter:blur(8px);
+}
+
+/* ============ SHEET (lista de troca) ============ */
+.scrim{
+  position:fixed;inset:0;z-index:60;background:rgba(6,8,40,.6);
+  backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.scrim.show{opacity:1;pointer-events:auto;}
+.sheet{
+  position:fixed;left:0;right:0;bottom:0;z-index:61;
+  max-width:var(--maxw);margin:0 auto;
+  max-height:88vh;display:flex;flex-direction:column;
+  background:linear-gradient(180deg,#1a1ec9,#13158f);
+  border-radius:26px 26px 0 0;
+  border-top:2px solid rgba(255,255,255,.18);
+  box-shadow:0 -16px 50px rgba(0,0,0,.55);
+  transform:translateY(102%);transition:transform .38s cubic-bezier(.22,1,.36,1);
+  padding-bottom:calc(14px + var(--safe-b));
+}
+.sheet.show{transform:translateY(0);}
+.sheet-grip{width:46px;height:5px;border-radius:999px;background:rgba(255,255,255,.35);margin:10px auto 4px;}
+.sheet-head{padding:6px 22px 12px;display:flex;align-items:center;justify-content:space-between;}
+.sheet-title{font-family:'Anton',sans-serif;font-weight:600;font-size:24px;}
+.sheet-x{width:42px;height:42px;border-radius:50%;border:none;background:rgba(255,255,255,.14);color:#fff;font-size:22px;cursor:pointer;}
+.sheet-tabs{display:flex;gap:8px;padding:0 18px 8px;}
+.stab{
+  flex:1;border:none;cursor:pointer;min-height:46px;border-radius:13px;
+  font-family:'Anton',sans-serif;font-weight:600;font-size:16px;
+  background:rgba(255,255,255,.1);color:#fff;display:flex;align-items:center;justify-content:center;gap:7px;
+}
+.stab b{background:rgba(0,0,0,.25);font-family:'Saira';font-weight:800;font-size:12px;padding:2px 8px;border-radius:999px;}
+.stab.on{background:#fff;color:var(--blue-ink);}
+.stab.on b{background:var(--blue-ink);color:#fff;}
+.sheet-body{overflow-y:auto;padding:8px 18px 8px;-webkit-overflow-scrolling:touch;}
+.tg{margin-bottom:16px;}
+.tg-h{display:flex;align-items:center;gap:9px;margin-bottom:9px;}
+.tg-h .tf{font-size:22px;display:flex;align-items:center;}
+.tg-h .tf img{width:28px;height:19px;object-fit:cover;border-radius:3px;display:block;box-shadow:0 1px 3px rgba(0,0,0,.4);}
+.tg-h .tn{font-family:'Anton',sans-serif;font-weight:600;font-size:17px;flex:1;}
+.tg-h .tc{font-size:12px;font-weight:700;color:rgba(255,255,255,.6);}
+.nums{display:flex;flex-wrap:wrap;gap:7px;}
+.numchip{
+  font-family:'Anton',sans-serif;font-weight:600;font-size:15px;
+  min-width:42px;height:42px;padding:0 10px;border-radius:11px;
+  display:flex;align-items:center;justify-content:center;gap:4px;
+}
+.numchip.miss{background:rgba(255,255,255,.92);color:var(--blue-ink);}
+.numchip.rep{background:linear-gradient(165deg,var(--gold-1),var(--gold-2) 60%,var(--gold-3));color:#5a3b00;}
+.numchip .x{font-family:'Saira';font-weight:900;font-size:.62em;color:var(--red);vertical-align:super;margin-left:1px;line-height:0;}
+.sheet-empty{text-align:center;padding:40px 20px;color:rgba(255,255,255,.7);}
+.sheet-empty .big{font-size:46px;margin-bottom:8px;}
+.sheet-foot{padding:10px 18px 2px;}
+.sheet-foot-row{display:flex;gap:10px;}
+.copybtn{
+  flex:1;min-height:52px;border:none;cursor:pointer;border-radius:15px;
+  font-family:'Anton',sans-serif;font-weight:600;font-size:17px;
+  background:rgba(255,255,255,.14);color:#fff;border:1.5px solid rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.copybtn.printlist{background:linear-gradient(180deg,var(--gold-1),var(--gold-2) 50%,var(--gold-3));color:#3a2700;border:none;}
+
+/* ============ EDIT MODAL ============ */
+.modal{
+  position:fixed;inset:0;z-index:70;display:none;align-items:flex-end;
+  background:rgba(6,8,40,.65);backdrop-filter:blur(3px);
+}
+.modal.show{display:flex;}
+.mcard{
+  width:100%;max-width:var(--maxw);margin:0 auto;
+  background:linear-gradient(180deg,#1a1ec9,#13158f);
+  border-radius:26px 26px 0 0;border-top:2px solid rgba(255,255,255,.18);
+  max-height:90vh;display:flex;flex-direction:column;
+  padding-bottom:calc(16px + var(--safe-b));
+}
+.mhead{padding:18px 22px 8px;display:flex;align-items:center;justify-content:space-between;}
+.mhead h3{margin:0;font-size:22px;font-weight:600;}
+.mbody{overflow-y:auto;padding:6px 20px 10px;}
+.mhint{font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.78);margin:0 0 12px;}
+.mhint code{background:rgba(0,0,0,.3);padding:2px 7px;border-radius:6px;font-family:ui-monospace,monospace;font-size:12px;}
+textarea#editTa{
+  width:100%;min-height:240px;resize:vertical;
+  font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:14px;line-height:1.7;
+  background:rgba(0,0,0,.28);color:#fff;border:1.5px solid rgba(255,255,255,.18);
+  border-radius:14px;padding:14px;
+}
+.mrow{display:flex;gap:10px;padding:12px 20px 4px;}
+.mbtn{flex:1;min-height:54px;border:none;cursor:pointer;border-radius:15px;font-family:'Anton',sans-serif;font-weight:600;font-size:17px;}
+.mbtn.save{background:linear-gradient(180deg,var(--gold-1),var(--gold-2) 50%,var(--gold-3));color:#3a2700;}
+.mbtn.cancel{background:rgba(255,255,255,.13);color:#fff;border:1.5px solid rgba(255,255,255,.2);}
+.mreset{margin:14px 20px 0;text-align:center;}
+.mreset button{background:none;border:none;color:#ff9a9a;font-size:14px;font-weight:700;cursor:pointer;text-decoration:underline;padding:8px;}
+
+/* toast */
+.toast{
+  position:fixed;left:50%;bottom:96px;transform:transl(-50%,20px);
+  transform:translateX(-50%) translateY(20px);
+  z-index:90;background:#0d2c1a;color:#bff5d9;
+  font-family:'Anton',sans-serif;font-weight:600;font-size:15px;
+  padding:13px 22px;border-radius:999px;border:1.5px solid var(--green);
+  opacity:0;pointer-events:none;transition:opacity .3s, transform .3s;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ============ GAMIFICAÇÃO ============ */
+.rank{
+  display:inline-flex;align-items:center;gap:7px;margin:11px auto 0;
+  position:relative;z-index:2;background:rgba(0,0,0,.3);
+  border:1.5px solid rgba(247,207,90,.55);border-radius:999px;
+  padding:7px 15px;font-weight:800;font-size:12.5px;color:#fff;backdrop-filter:blur(4px);
+}
+.rank .rk-em{font-size:17px;line-height:1;}
+.rank b{color:var(--gold-2);font-family:'Anton',sans-serif;font-weight:600;letter-spacing:.02em;font-size:14px;}
+.rank .rk-next{color:rgba(255,255,255,.72);font-weight:700;font-size:11px;}
+.confx{position:fixed;top:-16px;width:9px;height:15px;border-radius:2px;z-index:300;pointer-events:none;
+  box-shadow:0 1px 2px rgba(0,0,0,.25);animation:cfall 1.9s cubic-bezier(.25,.6,.55,1) forwards;}
+@keyframes cfall{0%{opacity:1}to{transform:translateY(108vh) rotate(680deg);opacity:.82}}
+/* selo de seleção completa */
+.team-count.done{position:relative;}
+.team.complete .team-head .team-name::after{content:" 🏆";}
+
+/* ============ PRINT ============ */
+#print{display:none;}
+@media print{
+  @page{size:A4;margin:13mm 12mm;}
+  body{background:#fff !important;color:#000;}
+  #bg,.app,header.capa,.filters-sticky,main,.bottom,.scrim,.sheet,.modal,.toast,.search-empty{display:none !important;}
+  #print{display:block;color:#000;font-family:'Saira',sans-serif;}
+  .p-page{break-after:page;}
+  .p-page:last-child{break-after:auto;}
+  .p-head{display:flex;align-items:center;gap:16px;border-bottom:3px solid #000;padding-bottom:12px;margin-bottom:16px;}
+  .p-logo{width:60px;height:auto;}
+  .p-head .pt{flex:1;}
+  .p-title{font-family:'Anton',sans-serif;font-weight:700;font-size:25px;margin:0;color:#000;}
+  .p-meta{font-size:11.5px;color:#333;margin-top:3px;font-weight:600;}
+  .p-total{text-align:right;}
+  .p-total b{font-family:'Anton',sans-serif;font-size:30px;display:block;line-height:1;}
+  .p-total span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#444;}
+  .p-cols{column-count:3;column-gap:20px;column-rule:1px solid #cfcfcf;}
+  .p-team{break-inside:avoid;margin:0 0 9px;}
+  .p-th{display:flex;align-items:center;gap:6px;margin-bottom:1px;}
+  .p-flag{flex:0 0 auto;font-size:1.3em;}
+  .p-flagimg{flex:0 0 auto;height:1.25em;width:1.8em;object-fit:cover;border:1px solid #bbb;border-radius:2px;}
+  .p-name{font-family:'Saira',sans-serif;font-weight:600;font-size:.92em;color:#222;line-height:1.05;text-transform:uppercase;}
+  .p-name b{font-family:'Anton',sans-serif;font-weight:700;color:#000;letter-spacing:.02em;}
+  .p-vals{font-weight:700;font-size:1.34em;color:#111;line-height:1.35;word-spacing:.34em;letter-spacing:.01em;}
+  .p-vals sup{font-size:.55em;font-weight:800;color:#d11;vertical-align:super;margin-left:.5px;word-spacing:normal;}
+  .p-foot{margin-top:14px;padding-top:7px;border-top:1px solid #999;font-size:9px;color:#777;text-align:center;letter-spacing:.05em;}
+  .p-none{font-size:15px;text-align:center;padding:40px;font-family:'Anton',sans-serif;}
+}
+</style>
+</head>
+<body>
+<div id="bg"></div>
+<div class="app">
+
+  <header class="capa" data-screen-label="Capa">
+    <button class="gear" id="gearBtn" aria-label="Editar lista">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+    <img class="crest-logo" src="assets/logo26-white.png" alt="FIFA World Cup 26" />
+    <div class="cap-kicker">Álbum oficial de</div>
+    <h1 class="cap-name">NICK</h1>
+    <div class="cap-sub">Copa do Mundo · FIFA 26</div>
+
+    <div class="progress-wrap">
+      <div class="progress-top">
+        <div class="prog-have"><b id="pHave">0</b> de <span id="pTotal">980</span> coladas</div>
+        <div class="prog-miss">faltam <b id="pMiss">980</b></div>
+      </div>
+      <div class="bar"><div class="bar-fill" id="barFill"></div></div>
+      <div class="prog-pct" id="pPct">0% completo</div>
+    </div>
+    <div class="rank" id="rank"></div>
+  </header>
+
+  <div class="filters-sticky">
+    <div class="searchbar" id="searchbar">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="searchInput" type="search" inputmode="search" autocomplete="off" placeholder="Buscar seleção, sigla ou número" aria-label="Buscar" />
+      <button class="search-clear" id="searchClear" aria-label="Limpar busca">×</button>
+    </div>
+    <div class="chips" id="chips">
+      <button class="chip on f-tudo" data-f="tudo">Tudo <span class="ct" id="c-tudo">0</span></button>
+      <button class="chip f-tenho" data-f="tenho">Tenho <span class="ct" id="c-tenho">0</span></button>
+      <button class="chip f-falta" data-f="faltam">Faltam <span class="ct" id="c-faltam">0</span></button>
+      <button class="chip f-rep" data-f="rep">Repetidas <span class="ct" id="c-rep">0</span></button>
+    </div>
+  </div>
+
+  <main id="album"></main>
+  <div class="search-empty" id="searchEmpty" style="display:none">
+    <div class="big">🔍</div>
+    Nada encontrado pra <b id="searchEmptyTerm"></b>.<br>Tente o nome da seleção, a sigla (ex.: GHA) ou o número.
+  </div>
+
+  <div class="bottom">
+    <button class="bbtn trade" id="tradeBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3l4 4-4 4"/><path d="M20 7H8a4 4 0 0 0-4 4"/><path d="M8 21l-4-4 4-4"/><path d="M4 17h12a4 4 0 0 0 4-4"/></svg>
+      Lista de troca
+    </button>
+    <button class="bbtn print" id="printBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>
+      Imprimir
+    </button>
+  </div>
+</div>
+
+<!-- LISTA DE TROCA -->
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet">
+  <div class="sheet-grip"></div>
+  <div class="sheet-head">
+    <div class="sheet-title">Lista de troca</div>
+    <button class="sheet-x" id="sheetX" aria-label="Fechar">×</button>
+  </div>
+  <div class="sheet-tabs">
+    <button class="stab on" data-st="miss">Faltam <b id="st-miss">0</b></button>
+    <button class="stab" data-st="rep">Repetidas <b id="st-rep">0</b></button>
+  </div>
+  <div class="sheet-body" id="sheetBody"></div>
+  <div class="sheet-foot">
+    <div class="sheet-foot-row">
+      <button class="copybtn" id="copyBtn">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+        Copiar
+      </button>
+      <button class="copybtn printlist" id="printListBtn">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg>
+        Imprimir
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- EDITAR LISTA -->
+<div class="modal" id="editModal">
+  <div class="mcard">
+    <div class="mhead"><h3>Editar lista (pais)</h3><button class="sheet-x" id="editX">×</button></div>
+    <div class="mbody">
+      <p class="mhint">Uma seleção por linha, no formato <code>SIGLA | bandeira | Nome | quantidade</code>. Cada seleção é numerada de <b>1 até a quantidade</b> (ex.: GHA 1 a GHA 20). A 1ª de cada time é o <b>escudo (foil)</b>.</p>
+      <textarea id="editTa" spellcheck="false"></textarea>
+      <div class="mreset"><button id="resetBtn">Zerar todas as marcações</button></div>
+    </div>
+    <div class="mrow">
+      <button class="mbtn cancel" id="editCancel">Cancelar</button>
+      <button class="mbtn save" id="editSave">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div id="print"></div>
+
+<script>
+/* ============ DADOS ============ */
+const DEFAULT_GROUPS = [
+  {id:'fwc', code:'FWC', name:'Abertura e Museu FIFA', flag:'🏆', count:20, special:true},
+  {id:'rsa', code:'RSA', name:'África do Sul', flag:'🇿🇦', count:20},
+  {id:'ger', code:'GER', name:'Alemanha', flag:'🇩🇪', count:20},
+  {id:'ksa', code:'KSA', name:'Arábia Saudita', flag:'🇸🇦', count:20},
+  {id:'alg', code:'ALG', name:'Argélia', flag:'🇩🇿', count:20},
+  {id:'arg', code:'ARG', name:'Argentina', flag:'🇦🇷', count:20},
+  {id:'aus', code:'AUS', name:'Austrália', flag:'🇦🇺', count:20},
+  {id:'aut', code:'AUT', name:'Áustria', flag:'🇦🇹', count:20},
+  {id:'bel', code:'BEL', name:'Bélgica', flag:'🇧🇪', count:20},
+  {id:'bih', code:'BIH', name:'Bósnia e Herzegovina', flag:'🇧🇦', count:20},
+  {id:'bra', code:'BRA', name:'Brasil', flag:'🇧🇷', count:20},
+  {id:'cpv', code:'CPV', name:'Cabo Verde', flag:'🇨🇻', count:20},
+  {id:'can', code:'CAN', name:'Canadá', flag:'🇨🇦', count:20},
+  {id:'qat', code:'QAT', name:'Catar', flag:'🇶🇦', count:20},
+  {id:'col', code:'COL', name:'Colômbia', flag:'🇨🇴', count:20},
+  {id:'kor', code:'KOR', name:'Coreia do Sul', flag:'🇰🇷', count:20},
+  {id:'civ', code:'CIV', name:'Costa do Marfim', flag:'🇨🇮', count:20},
+  {id:'cro', code:'CRO', name:'Croácia', flag:'🇭🇷', count:20},
+  {id:'cuw', code:'CUW', name:'Curaçao', flag:'🇨🇼', count:20},
+  {id:'egy', code:'EGY', name:'Egito', flag:'🇪🇬', count:20},
+  {id:'ecu', code:'ECU', name:'Equador', flag:'🇪🇨', count:20},
+  {id:'sco', code:'SCO', name:'Escócia', flag:'🏴󠁧󠁢󠁳󠁣󠁴󠁿', count:20},
+  {id:'esp', code:'ESP', name:'Espanha', flag:'🇪🇸', count:20},
+  {id:'usa', code:'USA', name:'Estados Unidos', flag:'🇺🇸', count:20},
+  {id:'fra', code:'FRA', name:'França', flag:'🇫🇷', count:20},
+  {id:'gha', code:'GHA', name:'Gana', flag:'🇬🇭', count:20},
+  {id:'hai', code:'HAI', name:'Haiti', flag:'🇭🇹', count:20},
+  {id:'eng', code:'ENG', name:'Inglaterra', flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿', count:20},
+  {id:'irn', code:'IRN', name:'Irã', flag:'🇮🇷', count:20},
+  {id:'irq', code:'IRQ', name:'Iraque', flag:'🇮🇶', count:20},
+  {id:'jpn', code:'JPN', name:'Japão', flag:'🇯🇵', count:20},
+  {id:'jor', code:'JOR', name:'Jordânia', flag:'🇯🇴', count:20},
+  {id:'mar', code:'MAR', name:'Marrocos', flag:'🇲🇦', count:20},
+  {id:'mex', code:'MEX', name:'México', flag:'🇲🇽', count:20},
+  {id:'nor', code:'NOR', name:'Noruega', flag:'🇳🇴', count:20},
+  {id:'nzl', code:'NZL', name:'Nova Zelândia', flag:'🇳🇿', count:20},
+  {id:'ned', code:'NED', name:'Países Baixos', flag:'🇳🇱', count:20},
+  {id:'pan', code:'PAN', name:'Panamá', flag:'🇵🇦', count:20},
+  {id:'par', code:'PAR', name:'Paraguai', flag:'🇵🇾', count:20},
+  {id:'por', code:'POR', name:'Portugal', flag:'🇵🇹', count:20},
+  {id:'cod', code:'COD', name:'RD Congo', flag:'🇨🇩', count:20},
+  {id:'sen', code:'SEN', name:'Senegal', flag:'🇸🇳', count:20},
+  {id:'swe', code:'SWE', name:'Suécia', flag:'🇸🇪', count:20},
+  {id:'sui', code:'SUI', name:'Suíça', flag:'🇨🇭', count:20},
+  {id:'cze', code:'CZE', name:'Tchéquia', flag:'🇨🇿', count:20},
+  {id:'tun', code:'TUN', name:'Tunísia', flag:'🇹🇳', count:20},
+  {id:'tur', code:'TUR', name:'Turquia', flag:'🇹🇷', count:20},
+  {id:'uru', code:'URU', name:'Uruguai', flag:'🇺🇾', count:20},
+  {id:'uzb', code:'UZB', name:'Uzbequistão', flag:'🇺🇿', count:20}
+];
+
+const LS_GROUPS='an_groups_v3', LS_STATE='an_state_v3';
+let GROUPS = load(LS_GROUPS) || DEFAULT_GROUPS.map(g=>({...g}));
+/* Faltantes do Nick (14/06) — o que ele NÃO tem. O app marca o resto como "tenho". */
+const INITIAL_MISSING = {
+  RSA:[1,6,8,10,12,14,15,18],
+  GER:[3,5,7,8,9,10,11,15,16,17,18,20],
+  KSA:[2,5,6,7,8,9,12,17],
+  ALG:[10],
+  ARG:[3,4,5,9,10,11,12,13,19,20],
+  AUS:[2,5,6,9,10,14,15,18,19],
+  AUT:[3,7,9,12,18],
+  BEL:[1,2,6,7,9,10,11,14,15,16,19,20],
+  BIH:[1,3,5,7,9,12,14,17,18],
+  BRA:[4,5,9,14,16,20],
+  CPV:[3,4,5,7,8,9,10,11,12,15,16,17,18,19,20],
+  CAN:[3,8,9,12,13,14,15,16,18,19],
+  QAT:[2,4,6,12,14,17,18,19],
+  COL:[6,7,10,18,20],
+  KOR:[1,2,3,5,6,8,10,15],
+  CIV:[1,3,4,7,8,11,18,19,20],
+  CRO:[1,2,3,4,6,7,8,10,11,12,17,19,20],
+  CUW:[1,5,6,8,9,11,12,13,14,18,19],
+  EGY:[2,5,6,8,9,10,12,14,15,17,18,19],
+  ECU:[1,2,3,4,7,8,17,20],
+  SCO:[1,2,4,5,6,7,8,9,10,12,14,15,18,20],
+  ESP:[2,8,9,13,14,17],
+  USA:[2,4,5,6,9,15,17],
+  FRA:[2,3,5,6,7,10,13,16,18,20],
+  GHA:[1,2,3,4,5,6,10,12,13,14,15,16,18],
+  HAI:[2,4,6,8,10,12,20],
+  ENG:[1,3,4,6,8,12,13,15,17,19],
+  IRN:[2,4,8,14,15],
+  IRQ:[3,6,9,10,11,14,15,16],
+  JPN:[2,5,6,7,10,11,16,17,20],
+  JOR:[2,7,9,11,14,16,18],
+  MAR:[2,4,6,7,8,9,11,14,17,18],
+  MEX:[3,6,7,17,19],
+  NOR:[1,2,3,6,8,9,10,11,12,14,15,16,17,18,19,20],
+  NZL:[1,2,3,4,5,7,8,9,11,12,14,15,17,20],
+  NED:[1,2,4,5,8,9,12,18],
+  PAN:[2,4,6,10,13,15],
+  PAR:[1,5,7,10,15,17,18],
+  POR:[1,6,7,10,11,13,15,19,20],
+  COD:[1,2,3,6,7,8,10,11,13,14,15,17,18],
+  SEN:[1,3,7,11,13,16,19,20],
+  SWE:[1,8,10,15,16,17,18],
+  SUI:[6,9,10,13,14,15,17,18,19],
+  CZE:[2,3,14,15,17,18],
+  TUN:[1,2,3,5,6,7,8,10,14,15,18],
+  TUR:[1,2,3,5,6,7,15,16,19],
+  URU:[1,2,3,6,7,10,11,16,17,20],
+  UZB:[1,2,4,6,8,10,11,12,15,16,18],
+  FWC:[1,3,4,5,7,13,15,17,19]
+};
+function initFromMissing(){
+  const s={};
+  GROUPS.forEach(g=>{
+    if(!(g.code in INITIAL_MISSING)) return;       // sem lista -> deixa tudo faltando
+    const miss=new Set(INITIAL_MISSING[g.code]);
+    for(let n=1;n<=g.count;n++){ if(!miss.has(n)) s[g.code+':'+n]={s:1}; } // o que NÃO falta = tem
+  });
+  return s;
+}
+let STATE = load(LS_STATE) || initFromMissing(); // chave "SIGLA:num" -> {s:1|2, d:repetidas}
+let filter='tudo';
+
+/* ---- gamificação: níveis ---- */
+const RANKS=[
+  {p:0,e:'⚽',n:'Reserva'},
+  {p:10,e:'👕',n:'Titular'},
+  {p:25,e:'🧢',n:'Capitão'},
+  {p:50,e:'🥅',n:'Artilheiro'},
+  {p:75,e:'🔥',n:'Craque'},
+  {p:90,e:'👑',n:'Lenda'},
+  {p:100,e:'🏆',n:'Campeão do Mundo'}
+];
+function rankFor(pct){let cur=RANKS[0],nxt=null;for(let i=0;i<RANKS.length;i++){if(pct>=RANKS[i].p){cur=RANKS[i];nxt=RANKS[i+1]||null;}}return{cur,nxt};}
+let appReady=false, celebratedM=0;
+function confetti(n){const cs=['#f7cf5a','#2226d6','#18c172','#ec3b3b','#ffffff','#ff8a3d'];for(let i=0;i<n;i++){const p=document.createElement('div');p.className='confx';p.style.left=(Math.random()*100)+'vw';p.style.background=cs[i%cs.length];p.style.animationDelay=((Math.random()*250)|0)/1000+'s';document.body.appendChild(p);setTimeout(()=>p.remove(),2100);}}
+function celebrate(msg,big){confetti(big?70:30);toast(msg);if(navigator.vibrate)navigator.vibrate(big?[20,40,20,40,60]:[15,30,15]);}
+
+function load(k){try{return JSON.parse(localStorage.getItem(k));}catch(e){return null;}}
+function save(){localStorage.setItem(LS_GROUPS,JSON.stringify(GROUPS));localStorage.setItem(LS_STATE,JSON.stringify(STATE));}
+
+/* numeração POR SELEÇÃO: cada seleção vai de 1 até count (ex.: GHA 1..GHA 20) */
+let TOTAL=0;
+function number(){TOTAL=0;GROUPS.forEach(g=>{TOTAL+=g.count;});}
+function K(code,n){return code+':'+n;}            // chave única da figurinha
+function st(k){return STATE[k]?STATE[k].s:0;}
+/* d = quantas ele tem SOBRANDO pra trocar (uma fica colada no álbum). Começa em 1. */
+function dup(k){return STATE[k]?(STATE[k].d||1):1;}
+
+/* ============ RENDER ============ */
+const albumEl=document.getElementById('album');
+/* etiqueta Panini (tab preto + bandeira) e fonte da bandeira */
+function flagSrc(g){return 'assets/flags/'+g.code+'.png';}
+function flagSticker(g){
+  const inner = g.special
+    ? `<span class="pimg pimg-special">${g.flag||'🏆'}</span>`
+    : `<img class="pimg" src="${flagSrc(g)}" alt="${g.name}" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'pimg pimg-special',textContent:'⚽'}))">`;
+  return `<span class="psticker"><span class="ptab">${g.code}</span>${inner}</span>`;
+}
+function buildAlbum(){
+  number();
+  let html='';
+  GROUPS.forEach(g=>{
+    html+=`<section class="team" data-team="${g.id}" data-screen-label="${g.name}">
+      <div class="team-head">
+        ${flagSticker(g)}
+        <div class="team-name">${g.name}</div>
+        <div class="team-count" id="tc-${g.id}">0/${g.count}</div>
+      </div>
+      <div class="team-bar"><i id="tb-${g.id}"></i></div>
+      <div class="grid">`;
+    for(let i=0;i<g.count;i++){
+      const num=i+1;
+      const key=K(g.code,num);
+      const isEsc=(i===0);
+      html+=`<button class="cell" data-k="${key}" data-n="${num}" ${isEsc?'data-esc="1"':''}>
+        ${isEsc?`<span class="crest">${g.special?(g.flag||'🏆'):`<img src="${flagSrc(g)}" alt="${g.name}">`}</span><span class="etag">${g.special?'FOIL':'ESCUDO'}</span>`:`<span class="num">${num}</span>`}
+        <span class="check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+        <span class="dupe">x${dup(key)}</span>
+      </button>`;
+    }
+    html+=`</div></section>`;
+  });
+  albumEl.innerHTML=html;
+  document.getElementById('pTotal').textContent=TOTAL;
+  document.querySelectorAll('.cell').forEach(applyCell);
+  GROUPS.forEach(updateTeam);
+  updateProgress();
+  applyFilter();
+}
+function applyCell(cell){
+  const k=cell.dataset.k, s=st(k);
+  cell.classList.remove('s0','s1','s2','escudo');
+  cell.classList.add('s'+s);
+  if(cell.dataset.esc) cell.classList.add('escudo');
+  if(s===2){const d=cell.querySelector('.dupe'); if(d) d.textContent='x'+dup(k);}
+}
+function updateTeam(g){
+  let have=0;
+  for(let n=1;n<=g.count;n++) if(st(K(g.code,n))>=1) have++;
+  const tc=document.getElementById('tc-'+g.id);
+  if(tc){tc.textContent=have+'/'+g.count;tc.classList.toggle('done',have===g.count);}
+  const tb=document.getElementById('tb-'+g.id);
+  if(tb) tb.style.width=(have/g.count*100)+'%';
+  const sec=document.querySelector('.team[data-team="'+g.id+'"]');
+  if(sec) sec.classList.toggle('complete',have===g.count);
+}
+function updateProgress(){
+  let have=0,rep=0;
+  for(const k in STATE){if(STATE[k].s>=1)have++;if(STATE[k].s===2)rep++;}
+  const miss=TOTAL-have;
+  document.getElementById('pHave').textContent=have;
+  document.getElementById('pMiss').textContent=miss;
+  document.getElementById('barFill').style.width=(TOTAL?have/TOTAL*100:0)+'%';
+  document.getElementById('pPct').textContent=Math.round(TOTAL?have/TOTAL*100:0)+'% completo';
+  document.getElementById('c-tudo').textContent=TOTAL;
+  document.getElementById('c-tenho').textContent=have;
+  document.getElementById('c-faltam').textContent=miss;
+  document.getElementById('c-rep').textContent=rep;
+  document.getElementById('st-miss').textContent=miss;
+  document.getElementById('st-rep').textContent=rep;
+  /* nível */
+  const pctn=TOTAL?have/TOTAL*100:0;
+  const {cur,nxt}=rankFor(pctn);
+  const rk=document.getElementById('rank');
+  if(rk){
+    const faltamPro = nxt?Math.max(0,Math.ceil(nxt.p/100*TOTAL)-have):0;
+    rk.innerHTML=`<span class="rk-em">${cur.e}</span> Nível <b>${cur.n}</b>`+
+      (nxt?` <span class="rk-next">faltam ${faltamPro} pro ${nxt.n}</span>`:` <span class="rk-next">nível máximo!</span>`);
+  }
+  /* comemoração de marcos (25/50/75/100%) */
+  const m=[100,75,50,25].find(x=>pctn>=x)||0;
+  if(appReady && m>celebratedM){
+    celebratedM=m;
+    const rnk=rankFor(pctn).cur;
+    const msg = m===100 ? 'ÁLBUM COMPLETO! Você é Campeão do Mundo! 🏆'
+      : `${m}%! Subiu pra ${rnk.n}! ${rnk.e}`;
+    celebrate(msg, m>=50);
+  }
+}
+
+/* ============ TAP / CICLO ============ */
+albumEl.addEventListener('click',e=>{
+  const cell=e.target.closest('.cell'); if(!cell)return;
+  const k=cell.dataset.k;
+  // tocar no selo vermelho ×N de uma repetida soma mais uma (×2 -> ×3 -> ... -> ×9 -> ×2)
+  if(e.target.closest('.dupe') && st(k)===2){
+    STATE[k].d = (STATE[k].d||1) >= 9 ? 1 : (STATE[k].d||1)+1;
+    save(); applyCell(cell); updateProgress();
+    cell.classList.remove('pop');void cell.offsetWidth;cell.classList.add('pop');
+    if(navigator.vibrate)navigator.vibrate(15);
+    return;
+  }
+  const g=GROUPS.find(x=>x.code===k.split(':')[0]);
+  const teamHave=gg=>{let h=0;for(let i=1;i<=gg.count;i++)if(st(K(gg.code,i))>=1)h++;return h;};
+  const wasComplete = g ? teamHave(g)===g.count : false;
+  const cur=st(k);
+  const next=(cur+1)%3; // 0->1->2->0
+  if(next===0){delete STATE[k];}
+  else STATE[k]={s:next, d: next===2?1:undefined};
+  save();
+  applyCell(cell);
+  cell.classList.remove('pop');void cell.offsetWidth;cell.classList.add('pop');
+  if(navigator.vibrate)navigator.vibrate(next===0?8:next===1?12:[10,30,12]);
+  if(g)updateTeam(g);
+  updateProgress();
+  if(g && !wasComplete && teamHave(g)===g.count) celebrate(g.flag+' '+g.name+' completo! 🎉', true);
+  if(filter!=='tudo')setTimeout(()=>applyFilter(),260);
+});
+/* incrementar repetidas: toque longo numa repetida aumenta x2->x3... */
+let pressT=null;
+albumEl.addEventListener('pointerdown',e=>{
+  const cell=e.target.closest('.cell'); if(!cell)return;
+  const k=cell.dataset.k;
+  pressT=setTimeout(()=>{
+    pressT=null;
+    if(st(k)===2){
+      STATE[k].d=Math.min(9,(STATE[k].d||1)+1);
+      save();applyCell(cell);
+      const d=cell.querySelector('.dupe');d.classList.remove('pop');
+      if(navigator.vibrate)navigator.vibrate(20);
+      updateProgress();
+    }
+  },480);
+});
+['pointerup','pointerleave','pointercancel','pointermove'].forEach(ev=>albumEl.addEventListener(ev,()=>{if(pressT){clearTimeout(pressT);pressT=null;}}));
+
+/* ============ FILTROS ============ */
+document.getElementById('chips').addEventListener('click',e=>{
+  const c=e.target.closest('.chip'); if(!c)return;
+  filter=c.dataset.f;
+  document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));
+  applyFilter();
+});
+/* busca */
+const searchInput=document.getElementById('searchInput'), searchBar=document.getElementById('searchbar');
+searchInput.addEventListener('input',()=>{
+  search=searchInput.value;
+  searchBar.classList.toggle('filled', search.trim()!=='');
+  applyFilter();
+});
+document.getElementById('searchClear').onclick=()=>{
+  search=''; searchInput.value=''; searchBar.classList.remove('filled');
+  searchInput.focus(); applyFilter();
+};
+function cellMatch(k){
+  const s=st(k);
+  if(filter==='tudo')return true;
+  if(filter==='tenho')return s>=1;
+  if(filter==='faltam')return s===0;
+  if(filter==='rep')return s===2;
+  return true;
+}
+/* normaliza pra busca: minúsculo, sem acento */
+function norm(s){return (s||'').toString().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').trim();}
+let search='';
+function applyFilter(){
+  const q=norm(search), isNum=/^\d+$/.test(q);
+  let totalVis=0;
+  document.querySelectorAll('.team').forEach(team=>{
+    const g=GROUPS.find(x=>x.id===team.dataset.team)||{};
+    const teamHit = q!=='' && !isNum && (norm(g.name).includes(q)||norm(g.code).includes(q));
+    let vis=0;
+    team.querySelectorAll('.cell').forEach(cell=>{
+      const num=+cell.dataset.n;
+      let m=cellMatch(cell.dataset.k);
+      if(m && q!==''){
+        if(isNum) m = String(num).includes(q);
+        else m = teamHit; // texto: mostra as figurinhas da seleção que casou
+      }
+      cell.classList.toggle('hide',!m);
+      if(m)vis++;
+    });
+    team.classList.toggle('hide',vis===0);
+    totalVis+=vis;
+  });
+  const empty=document.getElementById('searchEmpty');
+  if(empty){
+    const show = q!=='' && totalVis===0;
+    empty.style.display = show?'block':'none';
+    if(show) document.getElementById('searchEmptyTerm').textContent='"'+search.trim()+'"';
+  }
+}
+
+/* ============ LISTA DE TROCA ============ */
+const scrim=document.getElementById('scrim'),sheet=document.getElementById('sheet');
+let stab='miss';
+function openSheet(){buildSheet();scrim.classList.add('show');sheet.classList.add('show');}
+function closeSheet(){scrim.classList.remove('show');sheet.classList.remove('show');}
+document.getElementById('tradeBtn').onclick=openSheet;
+document.getElementById('sheetX').onclick=closeSheet;
+scrim.onclick=closeSheet;
+document.querySelector('.sheet-tabs').addEventListener('click',e=>{
+  const t=e.target.closest('.stab'); if(!t)return;
+  stab=t.dataset.st;
+  document.querySelectorAll('.stab').forEach(x=>x.classList.toggle('on',x===t));
+  buildSheet();
+});
+function buildSheet(){
+  number();
+  const body=document.getElementById('sheetBody');
+  let html='',any=false;
+  GROUPS.forEach(g=>{
+    const items=[];
+    for(let n=1;n<=g.count;n++){
+      const k=K(g.code,n), s=st(k);
+      if(stab==='miss'&&s===0)items.push({n});
+      if(stab==='rep'&&s===2)items.push({n,d:dup(k)});
+    }
+    if(!items.length)return;
+    any=true;
+    html+=`<div class="tg"><div class="tg-h"><span class="tf">${g.special?(g.flag||'🏆'):`<img src="${flagSrc(g)}" alt="">`}</span><span class="tn">${g.name}</span><span class="tc">${g.code} · ${items.length}</span></div><div class="nums">`;
+    items.forEach(it=>{
+      if(stab==='miss')html+=`<span class="numchip miss">${it.n}</span>`;
+      else html+=`<span class="numchip rep">${it.n}<sup class="x">${it.d}</sup></span>`;
+    });
+    html+=`</div></div>`;
+  });
+  if(!any){
+    html=`<div class="sheet-empty"><div class="big">${stab==='miss'?'🎉':'🃏'}</div>${stab==='miss'?'Não falta nenhuma! Álbum completo nessa visão.':'Nenhuma figurinha repetida ainda.'}</div>`;
+  }
+  body.innerHTML=html;
+}
+document.getElementById('copyBtn').onclick=()=>{
+  number();
+  let txt= stab==='miss' ? 'FALTAM PRO NICK — Copa 26\n\n' : 'REPETIDAS PRO NICK (pra trocar) — Copa 26\n\n';
+  GROUPS.forEach(g=>{
+    const items=[];
+    for(let n=1;n<=g.count;n++){
+      const k=K(g.code,n), s=st(k);
+      if(stab==='miss'&&s===0)items.push(n);
+      if(stab==='rep'&&s===2)items.push(n+' ('+dup(k)+')');
+    }
+    if(items.length)txt+=g.flag+' '+g.name+' ('+g.code+'): '+items.join(', ')+'\n';
+  });
+  navigator.clipboard&&navigator.clipboard.writeText(txt);
+  toast('Lista copiada!');
+};
+/* imprime SÓ a aba aberta (faltam OU repetidas) */
+function printOne(mode){number();document.getElementById('print').innerHTML=printSection(mode);autoFit();setTimeout(()=>window.print(),60);}
+document.getElementById('printListBtn').onclick=()=>printOne(stab);
+
+/* ============ IMPRIMIR ============ */
+document.getElementById('printBtn').onclick=()=>{buildPrint();setTimeout(()=>window.print(),60);};
+window.addEventListener('beforeprint',buildPrint);
+
+/* monta uma tabela (faltam OU repetidas), alfabética e em blocos por seleção */
+function printSection(mode){
+  const teams=[]; let total=0;
+  GROUPS.forEach(g=>{
+    const items=[];
+    for(let n=1;n<=g.count;n++){
+      const k=K(g.code,n), s=st(k);
+      if(mode==='miss'&&s===0)items.push(String(n));
+      if(mode==='rep'&&s===2)items.push(n+'<sup>'+dup(k)+'</sup>');
+    }
+    if(items.length){teams.push({g,items});total+=items.length;}
+  });
+  teams.sort((a,b)=>a.g.name.localeCompare(b.g.name,'pt',{sensitivity:'base'}));
+  const d=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
+  const titulo = mode==='miss' ? 'Faltam pro Nick' : 'Repetidas pro Nick';
+  const sub = mode==='miss' ? 'Pra comprar ou trocar' : 'Pra dar em troca';
+  const rotulo = mode==='miss' ? 'faltando' : 'repetidas';
+  let html=`<section class="p-page">
+    <div class="p-head">
+      <img class="p-logo" src="assets/logo26-black.png" alt="26"/>
+      <div class="pt"><h2 class="p-title">${titulo}</h2><div class="p-meta">Copa do Mundo FIFA 26 · ${sub} · ${d}</div></div>
+      <div class="p-total"><b>${total}</b><span>${rotulo}</span></div>
+    </div>`;
+  if(!teams.length){
+    html+=`<div class="p-none">${mode==='miss'?'🏆 Álbum completo! Não falta nenhuma figurinha.':'🃏 Nenhuma figurinha repetida ainda.'}</div>`;
+  }else{
+    html+=`<div class="p-cols">`;
+    teams.forEach(({g,items})=>{
+      const fl = g.special?`<span class="p-flag">${g.flag||'🏆'}</span>`:`<img class="p-flagimg" src="${flagSrc(g)}" alt="">`;
+      html+=`<div class="p-team"><div class="p-th">${fl}<span class="p-name"><b>${g.code}</b> – ${g.name}</span></div><div class="p-vals">${items.join(' ')}</div></div>`;
+    });
+    html+=`</div>`;
+  }
+  html+=`<div class="p-foot">Álbum do Nick · ${mode==='miss'?'risque cada figurinha quando comprar ou trocar':'risque cada uma quando trocar com um amigo'} ⚽</div>
+  </section>`;
+  return html;
+}
+/* auto-ajuste: mede cada folha e usa a MAIOR fonte que ainda cabe numa página A4 (3 colunas) */
+function autoFit(){
+  const pr=document.getElementById('print');
+  const st=document.createElement('style'); st.id='__meas';
+  st.textContent=`
+    #print.measuring{position:fixed;left:-10000px;top:0;display:block!important;width:703px;font-family:'Saira',sans-serif;color:#000;}
+    #print.measuring .p-page{width:703px;}
+    #print.measuring .p-head{display:flex;align-items:center;gap:16px;border-bottom:3px solid #000;padding-bottom:12px;margin-bottom:18px;}
+    #print.measuring .p-logo{width:60px;height:auto;}
+    #print.measuring .p-head .pt{flex:1;}
+    #print.measuring .p-title{font-family:'Anton',sans-serif;font-size:26px;margin:0;line-height:1;}
+    #print.measuring .p-meta{font-size:12px;margin-top:3px;}
+    #print.measuring .p-total b{font-family:'Anton',sans-serif;font-size:32px;display:block;line-height:1;}
+    #print.measuring .p-total span{font-size:10px;}
+    #print.measuring .p-cols{column-count:3;column-gap:20px;}
+    #print.measuring .p-team{break-inside:avoid;margin:0 0 9px;}
+    #print.measuring .p-th{display:flex;align-items:center;gap:6px;margin-bottom:1px;}
+    #print.measuring .p-flag{font-size:1.3em;}
+    #print.measuring .p-flagimg{flex:0 0 auto;height:1.25em;width:1.8em;}
+    #print.measuring .p-name{font-family:'Saira',sans-serif;font-size:.92em;text-transform:uppercase;line-height:1.05;}
+    #print.measuring .p-name b{font-family:'Anton',sans-serif;}
+    #print.measuring .p-vals{font-size:1.34em;line-height:1.35;word-spacing:.34em;}
+    #print.measuring .p-vals sup{font-size:.55em;vertical-align:super;}
+    #print.measuring .p-foot{margin-top:18px;padding-top:8px;border-top:1px solid #999;font-size:10px;}
+  `;
+  document.head.appendChild(st);
+  pr.classList.add('measuring');
+  const PAGE_H=1006; // altura útil de uma folha A4 em px (271mm), com folga
+  const FLOOR=13.5;  // nunca menor que isto (legibilidade vence "caber em 1 página")
+  pr.querySelectorAll('.p-page').forEach(page=>{
+    const cols=page.querySelector('.p-cols'); if(!cols)return;
+    let size=20; cols.style.fontSize=size+'px';
+    while(size>FLOOR && page.getBoundingClientRect().height>PAGE_H){ size-=0.5; cols.style.fontSize=size+'px'; }
+  });
+  pr.classList.remove('measuring');
+  st.remove();
+}
+/* imprime SEMPRE as duas tabelas (faltam + repetidas), cada uma em sua folha */
+function buildPrint(){
+  number();
+  document.getElementById('print').innerHTML = printSection('miss') + printSection('rep');
+  autoFit();
+}
+
+/* ============ EDITAR LISTA ============ */
+const modal=document.getElementById('editModal');
+document.getElementById('gearBtn').onclick=()=>{
+  document.getElementById('editTa').value=GROUPS.map(g=>`${g.code} | ${g.flag} | ${g.name} | ${g.count}`).join('\n');
+  modal.classList.add('show');
+};
+function closeModal(){modal.classList.remove('show');}
+document.getElementById('editX').onclick=closeModal;
+document.getElementById('editCancel').onclick=closeModal;
+document.getElementById('editSave').onclick=()=>{
+  const lines=document.getElementById('editTa').value.split('\n').map(l=>l.trim()).filter(Boolean);
+  const ng=[];
+  lines.forEach((l,i)=>{
+    const p=l.split('|').map(s=>s.trim());
+    if(p.length<4)return;
+    const code=(p[0]||'???').toUpperCase().slice(0,6), flag=p[1]||'⚽', name=p[2]||('Time '+(i+1)), cnt=Math.max(1,Math.min(99,parseInt(p[3])||20));
+    const id=(name.toLowerCase().replace(/[^a-z0-9]/g,'').slice(0,8)||'t')+i;
+    ng.push({id,name,flag,code,count:cnt});
+  });
+  if(!ng.length){toast('Nada para salvar');return;}
+  GROUPS=ng;save();buildAlbum();closeModal();toast('Lista atualizada!');
+};
+document.getElementById('resetBtn').onclick=()=>{
+  if(confirm('Tem certeza? Isso apaga todas as marcações (tenho/falta/repetida).')){
+    STATE={};save();buildAlbum();closeModal();toast('Marcações zeradas');
+  }
+};
+
+/* toast */
+let toT;
+function toast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(toT);toT=setTimeout(()=>t.classList.remove('show'),1800);
+}
+
+/* init */
+buildAlbum();
+(function(){const have=Object.values(STATE).filter(x=>x.s>=1).length;const pct=TOTAL?have/TOTAL*100:0;celebratedM=[100,75,50,25].find(x=>pct>=x)||0;appReady=true;})();
+</script>
+
+<template id="__bundler_thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+<rect width="400" height="400" fill="#1b1fb0"/>
+<text x="200" y="200" font-family="Anton,sans-serif" font-size="150" font-weight="700" fill="#fff" text-anchor="middle" dominant-baseline="central">26</text>
+<text x="200" y="300" font-family="Anton,sans-serif" font-size="34" font-weight="700" fill="#f7cf5a" text-anchor="middle">NICKOLAS</text>
+</svg>
+</template>
+</body>
+</html>
