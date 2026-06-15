@@ -177,6 +177,7 @@ header.capa{
 .chip.on.f-falta .ct{background:#3a2700;color:var(--gold-1);}
 .chip.on.f-rep{background:var(--red);color:#fff;border-color:#ff8585;}
 .chip.on.f-rep .ct{background:rgba(0,0,0,.25);color:#fff;}
+.howto{margin-top:8px;font-size:11px;font-weight:700;color:rgba(255,255,255,.62);text-align:center;letter-spacing:.01em;}
 .chip.on.f-tenho{background:var(--green);color:#053d22;border-color:#7df0b6;}
 .chip.on.f-tenho .ct{background:#053d22;color:#bff5d9;}
 
@@ -526,6 +527,7 @@ textarea#editTa{
       <button class="chip f-falta" data-f="faltam">Faltam <span class="ct" id="c-faltam">0</span></button>
       <button class="chip f-rep" data-f="rep">Repetidas <span class="ct" id="c-rep">0</span></button>
     </div>
+    <div class="howto">👆 Toque pra marcar · toque de novo soma repetidas · ✊ segure pra apagar</div>
   </div>
 
   <main id="album"></main>
@@ -833,50 +835,49 @@ function updateProgress(){
 }
 
 /* ============ TAP / CICLO ============ */
-albumEl.addEventListener('click',e=>{
-  const cell=e.target.closest('.cell'); if(!cell)return;
+/* Toque: falta -> tenho -> repetida 1 -> 2 -> 3 ... (até 9, vai somando).
+   Segurar (toque longo): apaga e volta pra "falta" (pra corrigir). */
+const teamHaveOf=gg=>{let h=0;for(let i=1;i<=gg.count;i++)if(st(K(gg.code,i))>=1)h++;return h;};
+function changeCell(cell, action){
   const k=cell.dataset.k;
-  // tocar no selo vermelho ×N de uma repetida soma mais uma (×2 -> ×3 -> ... -> ×9 -> ×2)
-  if(e.target.closest('.dupe') && st(k)===2){
-    STATE[k].d = (STATE[k].d||1) >= 9 ? 1 : (STATE[k].d||1)+1;
-    save(); applyCell(cell); updateProgress();
-    cell.classList.remove('pop');void cell.offsetWidth;cell.classList.add('pop');
-    if(navigator.vibrate)navigator.vibrate(15);
-    return;
-  }
   const g=GROUPS.find(x=>x.code===k.split(':')[0]);
-  const teamHave=gg=>{let h=0;for(let i=1;i<=gg.count;i++)if(st(K(gg.code,i))>=1)h++;return h;};
-  const wasComplete = g ? teamHave(g)===g.count : false;
+  const wasComplete = g ? teamHaveOf(g)===g.count : false;
   const cur=st(k);
-  const next=(cur+1)%3; // 0->1->2->0
-  if(next===0){delete STATE[k];}
-  else STATE[k]={s:next, d: next===2?1:undefined};
+  let vib=12;
+  if(action==='clear'){ delete STATE[k]; vib=8; }
+  else {
+    if(cur===0){ STATE[k]={s:1}; vib=12; }
+    else if(cur===1){ STATE[k]={s:2,d:1}; vib=[10,30,12]; }
+    else { STATE[k]={s:2,d:Math.min(9,(STATE[k].d||1)+1)}; vib=[8,26,8]; }
+  }
   save();
   applyCell(cell);
   cell.classList.remove('pop');void cell.offsetWidth;cell.classList.add('pop');
-  if(navigator.vibrate)navigator.vibrate(next===0?8:next===1?12:[10,30,12]);
+  if(navigator.vibrate)navigator.vibrate(vib);
   if(g)updateTeam(g);
   updateProgress();
-  if(g && !wasComplete && teamHave(g)===g.count) celebrate(g.flag+' '+g.name+' completo! 🎉', true);
+  if(action!=='clear' && g && !wasComplete && teamHaveOf(g)===g.count) celebrate(g.flag+' '+g.name+' completo! 🎉', true);
   if(filter!=='tudo')setTimeout(()=>applyFilter(),260);
-});
-/* incrementar repetidas: toque longo numa repetida aumenta x2->x3... */
-let pressT=null;
+}
+
+let pressT=null, longFired=false, sx=0, sy=0;
 albumEl.addEventListener('pointerdown',e=>{
   const cell=e.target.closest('.cell'); if(!cell)return;
-  const k=cell.dataset.k;
+  longFired=false; sx=e.clientX; sy=e.clientY;
   pressT=setTimeout(()=>{
-    pressT=null;
-    if(st(k)===2){
-      STATE[k].d=Math.min(9,(STATE[k].d||1)+1);
-      save();applyCell(cell);
-      const d=cell.querySelector('.dupe');d.classList.remove('pop');
-      if(navigator.vibrate)navigator.vibrate(20);
-      updateProgress();
-    }
-  },480);
+    pressT=null; longFired=true;
+    if(st(cell.dataset.k)!==0) changeCell(cell,'clear');  // segurar apaga
+  },500);
 });
-['pointerup','pointerleave','pointercancel','pointermove'].forEach(ev=>albumEl.addEventListener(ev,()=>{if(pressT){clearTimeout(pressT);pressT=null;}}));
+albumEl.addEventListener('pointermove',e=>{
+  if(pressT && (Math.abs(e.clientX-sx)>12 || Math.abs(e.clientY-sy)>12)){ clearTimeout(pressT); pressT=null; }
+});
+['pointerup','pointercancel','pointerleave'].forEach(ev=>albumEl.addEventListener(ev,()=>{if(pressT){clearTimeout(pressT);pressT=null;}}));
+albumEl.addEventListener('click',e=>{
+  const cell=e.target.closest('.cell'); if(!cell)return;
+  if(longFired){ longFired=false; return; }   // o "segurar" já apagou; ignora o clique
+  changeCell(cell,'tap');
+});
 
 /* ============ FILTROS ============ */
 document.getElementById('chips').addEventListener('click',e=>{
