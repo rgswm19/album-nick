@@ -1062,7 +1062,7 @@ function autoFit(){
   document.head.appendChild(st);
   pr.classList.add('measuring');
   const PAGE_H=1006; // altura útil de uma folha A4 em px (271mm), com folga
-  const FLOOR=13.5;  // nunca menor que isto (legibilidade vence "caber em 1 página")
+  const FLOOR=7;     // encolhe até caber em 1 página; só não passa disso em casos extremos
   pr.querySelectorAll('.p-page').forEach(page=>{
     const cols=page.querySelector('.p-cols'); if(!cols)return;
     let size=20; cols.style.fontSize=size+'px';
@@ -1074,7 +1074,9 @@ function autoFit(){
 /* imprime SEMPRE as duas tabelas (faltam + repetidas), cada uma em sua folha */
 function buildPrint(){
   number();
-  document.getElementById('print').innerHTML = printSection('miss') + printSection('rep');
+  let hasRep=false; for(const k in STATE){ if(STATE[k].s===2){hasRep=true;break;} }
+  // folha de repetidas só sai se houver alguma (senão fica 1 página só)
+  document.getElementById('print').innerHTML = printSection('miss') + (hasRep ? printSection('rep') : '');
   autoFit();
 }
 
