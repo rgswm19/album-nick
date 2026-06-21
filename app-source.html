@@ -1062,14 +1062,28 @@ function autoFit(){
   document.head.appendChild(st);
   pr.classList.add('measuring');
   const PAGE_H=1006; // altura útil de uma folha A4 em px (271mm), com folga
-  const FLOOR=7;     // encolhe até caber em 1 página; só não passa disso em casos extremos
+  const FLOOR=7;
   pr.querySelectorAll('.p-page').forEach(page=>{
     const cols=page.querySelector('.p-cols'); if(!cols)return;
-    let size=20; cols.style.fontSize=size+'px';
+    // nº de figurinhas nesta folha (determinístico — NÃO depende de medir o layout,
+    // então funciona igual no iPhone/iPad mesmo quando a medição falha)
+    let total=0; page.querySelectorAll('.p-vals').forEach(v=>{ total+=v.textContent.trim().split(/\s+/).filter(Boolean).length; });
+    let size=safeStart(total); cols.style.fontSize=size+'px';
+    // se a medição funcionar e ainda passar de 1 página, diminui mais (nunca aumenta)
     while(size>FLOOR && page.getBoundingClientRect().height>PAGE_H){ size-=0.5; cols.style.fontSize=size+'px'; }
   });
   pr.classList.remove('measuring');
   st.remove();
+}
+/* maior fonte que sabidamente cabe em 1 folha (A4 ou Carta), pelo nº de figurinhas */
+function safeStart(t){
+  if(t<=120)return 14;
+  if(t<=220)return 13;
+  if(t<=330)return 12;
+  if(t<=460)return 10.5;
+  if(t<=580)return 9.5;
+  if(t<=720)return 8.5;
+  return 7.5;
 }
 /* imprime SEMPRE as duas tabelas (faltam + repetidas), cada uma em sua folha */
 function buildPrint(){
@@ -1118,6 +1132,7 @@ function toast(msg){
 /* init */
 buildAlbum();
 (function(){const have=Object.values(STATE).filter(x=>x.s>=1).length;const pct=TOTAL?have/TOTAL*100:0;celebratedM=[100,75,50,25].find(x=>pct>=x)||0;appReady=true;})();
+buildPrint(); // relatório já fica pronto e dimensionado (vale pra qualquer caminho de impressão)
 </script>
 
 <template id="__bundler_thumbnail">
