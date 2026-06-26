@@ -471,10 +471,10 @@ textarea#editTa{
   .p-head{display:flex;align-items:center;gap:16px;border-bottom:3px solid #000;padding-bottom:12px;margin-bottom:16px;}
   .p-logo{width:60px;height:auto;}
   .p-head .pt{flex:1;}
-  .p-title{font-family:'Anton',sans-serif;font-weight:700;font-size:25px;margin:0;color:#000;}
+  .p-title{font-family:'Saira',Arial,sans-serif;font-weight:800;font-size:25px;margin:0;color:#000;}
   .p-meta{font-size:11.5px;color:#333;margin-top:3px;font-weight:600;}
   .p-total{text-align:right;}
-  .p-total b{font-family:'Anton',sans-serif;font-size:30px;display:block;line-height:1;}
+  .p-total b{font-family:'Saira',Arial,sans-serif;font-weight:800;font-size:30px;display:block;line-height:1;}
   .p-total span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#444;}
   .p-cols{display:grid;grid-template-columns:repeat(3,1fr);column-gap:18px;}
   .p-team{break-inside:avoid;margin:0 0 9px;}
@@ -483,11 +483,11 @@ textarea#editTa{
   .p-flag{flex:0 0 auto;font-size:1.3em;}
   .p-flagimg{flex:0 0 auto;height:1.25em;width:1.8em;object-fit:cover;border:1px solid #bbb;border-radius:2px;}
   .p-name{font-family:'Saira',sans-serif;font-weight:600;font-size:.92em;color:#222;line-height:1.05;text-transform:uppercase;}
-  .p-name b{font-family:'Anton',sans-serif;font-weight:700;color:#000;letter-spacing:.02em;}
+  .p-name b{font-family:'Saira',Arial,sans-serif;font-weight:800;color:#000;letter-spacing:.02em;}
   .p-vals{font-weight:700;font-size:1.34em;color:#111;line-height:1.35;word-spacing:.34em;letter-spacing:.01em;}
   .p-vals sup{font-size:.55em;font-weight:800;color:#d11;vertical-align:super;margin-left:.5px;word-spacing:normal;}
   .p-foot{margin-top:14px;padding-top:7px;border-top:1px solid #999;font-size:9px;color:#777;text-align:center;letter-spacing:.05em;}
-  .p-none{font-size:15px;text-align:center;padding:40px;font-family:'Anton',sans-serif;}
+  .p-none{font-size:15px;text-align:center;padding:40px;font-family:'Saira',Arial,sans-serif;font-weight:800;}
 }
 </style>
 </head>
@@ -597,58 +597,58 @@ textarea#editTa{
 <script>
 /* ============ DADOS ============ */
 const DEFAULT_GROUPS = [
-  {id:'fwc', code:'FWC', name:'Abertura e Museu FIFA', flag:'🏆', count:20, special:true},
-  {id:'rsa', code:'RSA', name:'África do Sul', flag:'🇿🇦', count:20},
-  {id:'ger', code:'GER', name:'Alemanha', flag:'🇩🇪', count:20},
-  {id:'ksa', code:'KSA', name:'Arábia Saudita', flag:'🇸🇦', count:20},
-  {id:'alg', code:'ALG', name:'Argélia', flag:'🇩🇿', count:20},
+  {id:'fwc', code:'FWC', name:'Opening & FIFA Museum', flag:'🏆', count:20, special:true},
+  {id:'rsa', code:'RSA', name:'South Africa', flag:'🇿🇦', count:20},
+  {id:'ger', code:'GER', name:'Germany', flag:'🇩🇪', count:20},
+  {id:'ksa', code:'KSA', name:'Saudi Arabia', flag:'🇸🇦', count:20},
+  {id:'alg', code:'ALG', name:'Algeria', flag:'🇩🇿', count:20},
   {id:'arg', code:'ARG', name:'Argentina', flag:'🇦🇷', count:20},
-  {id:'aus', code:'AUS', name:'Austrália', flag:'🇦🇺', count:20},
-  {id:'aut', code:'AUT', name:'Áustria', flag:'🇦🇹', count:20},
-  {id:'bel', code:'BEL', name:'Bélgica', flag:'🇧🇪', count:20},
-  {id:'bih', code:'BIH', name:'Bósnia e Herzegovina', flag:'🇧🇦', count:20},
-  {id:'bra', code:'BRA', name:'Brasil', flag:'🇧🇷', count:20},
-  {id:'cpv', code:'CPV', name:'Cabo Verde', flag:'🇨🇻', count:20},
-  {id:'can', code:'CAN', name:'Canadá', flag:'🇨🇦', count:20},
-  {id:'qat', code:'QAT', name:'Catar', flag:'🇶🇦', count:20},
-  {id:'col', code:'COL', name:'Colômbia', flag:'🇨🇴', count:20},
-  {id:'kor', code:'KOR', name:'Coreia do Sul', flag:'🇰🇷', count:20},
-  {id:'civ', code:'CIV', name:'Costa do Marfim', flag:'🇨🇮', count:20},
-  {id:'cro', code:'CRO', name:'Croácia', flag:'🇭🇷', count:20},
+  {id:'aus', code:'AUS', name:'Australia', flag:'🇦🇺', count:20},
+  {id:'aut', code:'AUT', name:'Austria', flag:'🇦🇹', count:20},
+  {id:'bel', code:'BEL', name:'Belgium', flag:'🇧🇪', count:20},
+  {id:'bih', code:'BIH', name:'Bosnia & Herzegovina', flag:'🇧🇦', count:20},
+  {id:'bra', code:'BRA', name:'Brazil', flag:'🇧🇷', count:20},
+  {id:'cpv', code:'CPV', name:'Cape Verde', flag:'🇨🇻', count:20},
+  {id:'can', code:'CAN', name:'Canada', flag:'🇨🇦', count:20},
+  {id:'qat', code:'QAT', name:'Qatar', flag:'🇶🇦', count:20},
+  {id:'col', code:'COL', name:'Colombia', flag:'🇨🇴', count:20},
+  {id:'kor', code:'KOR', name:'South Korea', flag:'🇰🇷', count:20},
+  {id:'civ', code:'CIV', name:'Ivory Coast', flag:'🇨🇮', count:20},
+  {id:'cro', code:'CRO', name:'Croatia', flag:'🇭🇷', count:20},
   {id:'cuw', code:'CUW', name:'Curaçao', flag:'🇨🇼', count:20},
-  {id:'egy', code:'EGY', name:'Egito', flag:'🇪🇬', count:20},
-  {id:'ecu', code:'ECU', name:'Equador', flag:'🇪🇨', count:20},
-  {id:'sco', code:'SCO', name:'Escócia', flag:'🏴󠁧󠁢󠁳󠁣󠁴󠁿', count:20},
-  {id:'esp', code:'ESP', name:'Espanha', flag:'🇪🇸', count:20},
-  {id:'usa', code:'USA', name:'Estados Unidos', flag:'🇺🇸', count:20},
-  {id:'fra', code:'FRA', name:'França', flag:'🇫🇷', count:20},
-  {id:'gha', code:'GHA', name:'Gana', flag:'🇬🇭', count:20},
+  {id:'egy', code:'EGY', name:'Egypt', flag:'🇪🇬', count:20},
+  {id:'ecu', code:'ECU', name:'Ecuador', flag:'🇪🇨', count:20},
+  {id:'sco', code:'SCO', name:'Scotland', flag:'🏴󠁧󠁢󠁳󠁣󠁴󠁿', count:20},
+  {id:'esp', code:'ESP', name:'Spain', flag:'🇪🇸', count:20},
+  {id:'usa', code:'USA', name:'United States', flag:'🇺🇸', count:20},
+  {id:'fra', code:'FRA', name:'France', flag:'🇫🇷', count:20},
+  {id:'gha', code:'GHA', name:'Ghana', flag:'🇬🇭', count:20},
   {id:'hai', code:'HAI', name:'Haiti', flag:'🇭🇹', count:20},
-  {id:'eng', code:'ENG', name:'Inglaterra', flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿', count:20},
-  {id:'irn', code:'IRN', name:'Irã', flag:'🇮🇷', count:20},
-  {id:'irq', code:'IRQ', name:'Iraque', flag:'🇮🇶', count:20},
-  {id:'jpn', code:'JPN', name:'Japão', flag:'🇯🇵', count:20},
-  {id:'jor', code:'JOR', name:'Jordânia', flag:'🇯🇴', count:20},
-  {id:'mar', code:'MAR', name:'Marrocos', flag:'🇲🇦', count:20},
-  {id:'mex', code:'MEX', name:'México', flag:'🇲🇽', count:20},
-  {id:'nor', code:'NOR', name:'Noruega', flag:'🇳🇴', count:20},
-  {id:'nzl', code:'NZL', name:'Nova Zelândia', flag:'🇳🇿', count:20},
-  {id:'ned', code:'NED', name:'Países Baixos', flag:'🇳🇱', count:20},
-  {id:'pan', code:'PAN', name:'Panamá', flag:'🇵🇦', count:20},
-  {id:'par', code:'PAR', name:'Paraguai', flag:'🇵🇾', count:20},
+  {id:'eng', code:'ENG', name:'England', flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿', count:20},
+  {id:'irn', code:'IRN', name:'Iran', flag:'🇮🇷', count:20},
+  {id:'irq', code:'IRQ', name:'Iraq', flag:'🇮🇶', count:20},
+  {id:'jpn', code:'JPN', name:'Japan', flag:'🇯🇵', count:20},
+  {id:'jor', code:'JOR', name:'Jordan', flag:'🇯🇴', count:20},
+  {id:'mar', code:'MAR', name:'Morocco', flag:'🇲🇦', count:20},
+  {id:'mex', code:'MEX', name:'Mexico', flag:'🇲🇽', count:20},
+  {id:'nor', code:'NOR', name:'Norway', flag:'🇳🇴', count:20},
+  {id:'nzl', code:'NZL', name:'New Zealand', flag:'🇳🇿', count:20},
+  {id:'ned', code:'NED', name:'Netherlands', flag:'🇳🇱', count:20},
+  {id:'pan', code:'PAN', name:'Panama', flag:'🇵🇦', count:20},
+  {id:'par', code:'PAR', name:'Paraguay', flag:'🇵🇾', count:20},
   {id:'por', code:'POR', name:'Portugal', flag:'🇵🇹', count:20},
-  {id:'cod', code:'COD', name:'RD Congo', flag:'🇨🇩', count:20},
+  {id:'cod', code:'COD', name:'DR Congo', flag:'🇨🇩', count:20},
   {id:'sen', code:'SEN', name:'Senegal', flag:'🇸🇳', count:20},
-  {id:'swe', code:'SWE', name:'Suécia', flag:'🇸🇪', count:20},
-  {id:'sui', code:'SUI', name:'Suíça', flag:'🇨🇭', count:20},
-  {id:'cze', code:'CZE', name:'Tchéquia', flag:'🇨🇿', count:20},
-  {id:'tun', code:'TUN', name:'Tunísia', flag:'🇹🇳', count:20},
-  {id:'tur', code:'TUR', name:'Turquia', flag:'🇹🇷', count:20},
-  {id:'uru', code:'URU', name:'Uruguai', flag:'🇺🇾', count:20},
-  {id:'uzb', code:'UZB', name:'Uzbequistão', flag:'🇺🇿', count:20}
+  {id:'swe', code:'SWE', name:'Sweden', flag:'🇸🇪', count:20},
+  {id:'sui', code:'SUI', name:'Switzerland', flag:'🇨🇭', count:20},
+  {id:'cze', code:'CZE', name:'Czechia', flag:'🇨🇿', count:20},
+  {id:'tun', code:'TUN', name:'Tunisia', flag:'🇹🇳', count:20},
+  {id:'tur', code:'TUR', name:'Türkiye', flag:'🇹🇷', count:20},
+  {id:'uru', code:'URU', name:'Uruguay', flag:'🇺🇾', count:20},
+  {id:'uzb', code:'UZB', name:'Uzbekistan', flag:'🇺🇿', count:20}
 ];
 
-const LS_GROUPS='an_groups_v3', LS_STATE='an_state_v3';
+const LS_GROUPS='an_groups_v4', LS_STATE='an_state_v3';
 let GROUPS = load(LS_GROUPS) || DEFAULT_GROUPS.map(g=>({...g}));
 /* Faltantes do Nick (14/06) — o que ele NÃO tem. O app marca o resto como "tenho". */
 const INITIAL_MISSING = {
@@ -1043,9 +1043,9 @@ function autoFit(){
     #print.measuring .p-head{display:flex;align-items:center;gap:16px;border-bottom:3px solid #000;padding-bottom:12px;margin-bottom:18px;}
     #print.measuring .p-logo{width:60px;height:auto;}
     #print.measuring .p-head .pt{flex:1;}
-    #print.measuring .p-title{font-family:'Anton',sans-serif;font-size:26px;margin:0;line-height:1;}
+    #print.measuring .p-title{font-family:'Saira',Arial,sans-serif;font-weight:800;font-size:26px;margin:0;line-height:1;}
     #print.measuring .p-meta{font-size:12px;margin-top:3px;}
-    #print.measuring .p-total b{font-family:'Anton',sans-serif;font-size:32px;display:block;line-height:1;}
+    #print.measuring .p-total b{font-family:'Saira',Arial,sans-serif;font-weight:800;font-size:32px;display:block;line-height:1;}
     #print.measuring .p-total span{font-size:10px;}
     #print.measuring .p-cols{display:grid;grid-template-columns:repeat(3,1fr);column-gap:18px;}
     #print.measuring .p-team{break-inside:avoid;margin:0 0 9px;}
@@ -1054,7 +1054,7 @@ function autoFit(){
     #print.measuring .p-flag{font-size:1.3em;}
     #print.measuring .p-flagimg{flex:0 0 auto;height:1.25em;width:1.8em;}
     #print.measuring .p-name{font-family:'Saira',sans-serif;font-size:.92em;text-transform:uppercase;line-height:1.05;}
-    #print.measuring .p-name b{font-family:'Anton',sans-serif;}
+    #print.measuring .p-name b{font-family:'Saira',Arial,sans-serif;font-weight:800;}
     #print.measuring .p-vals{font-size:1.34em;line-height:1.35;word-spacing:.34em;}
     #print.measuring .p-vals sup{font-size:.55em;vertical-align:super;}
     #print.measuring .p-foot{margin-top:18px;padding-top:8px;border-top:1px solid #999;font-size:10px;}
